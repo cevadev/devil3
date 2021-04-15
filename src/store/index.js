@@ -1,15 +1,14 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+//Damos de alta a nuestro modulo Oauth en Vuex
+import oauth from "./modules/oauth.js";
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+  // Aquuí registramos todos los módulos
   modules: {
-  }
-})
+    oauth,
+  },
+});
