@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <h1>Home page</h1>
+    <home-title/>
+    <!--recuperamos el componente formulario-->
+    <main-form />
+
     <!-- <img alt="Vue logo" src="../../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
@@ -10,8 +13,15 @@
 // @ is an alias to /src
 //import HelloWorld from '@/components/HelloWorld.vue'
 
+import MainForm from './HomeForm.vue';
+import HomeTitle from './HomeTitle.vue';
+
 export default {
   name: 'Home',
+  components: {
+    MainForm,
+    HomeTitle,
+  }
   /* components: {
     HelloWorld
   } */
