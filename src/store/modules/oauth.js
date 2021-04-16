@@ -28,6 +28,11 @@ export default {
     // Creamos la función getToken para obtener un token, que recibe como parámetro el objeto `context`
     // Gracias a la asignación de desestructuración de JavaScript, recogemos `commit` como argumento
     getToken({ commit }) {
+      //la variable isLoading del modulo loading por defecto es false,
+      //al hacer la peticion del token cambiamos
+      //a true el valor de isLoading
+      commit("loading/SET_LOADING", true, { root: true });
+
       // Pasos:
       //  1 - Hacer llamada HTTP para obtener el token
       //  2 - Si va OK, guardar el token en 'accessToken'. Continuar el flujo normal
@@ -46,8 +51,8 @@ export default {
           console.log("Error OAuth: ", err);
         })
         .finally(() => {
-          // Por ahora no hacemos nada más aquí
-          console.log("Done!");
+          //cuando termine la llamada con exito o error ponemos en false la varable isLoading
+          commit("loading/SET_LOADING", false, { root: true });
         });
     },
   },
