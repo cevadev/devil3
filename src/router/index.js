@@ -21,6 +21,7 @@ const routes = routerOptions.map((r) => {
     ...r,
     //cargamos el componente de manera lazy load es decir dividimos nuestro codigo en pequeñas partes
     //solo se cargara la parte correspondiente a la ruta que estamos visitando.
+    //la funcion en component se encarga de traer el componente cuando sea necesario
     component: () => import(`@/views/${r.name}/Index.vue`),
   };
 });
