@@ -2,7 +2,12 @@
   <div>
     <!--si la variable isLoading es true mostramos el componente BaseLoading-->
     <base-loading v-if="isLoading"/>
-    <h1>Profile View</h1>
+    <!--renderizamos el componente hijo cuando tenga datos de la api-->
+    <template v-if="profileData !== null">
+      <!--usamos el componente hijo y pasamos la data del api como props-->
+      <main-block :profile-data="profileData" />
+    </template>
+    
   </div>
 </template>
 
@@ -14,6 +19,9 @@ import { getApiAccount } from '../../api/search.js';
 //importamos nuestro componente loagind
 import BaseLoading from '../../components/BaseLoading.vue';
 
+//importamos el componente hijo MainBlok/Index.vue
+import MainBlock from './MainBlock/Index.vue';
+
 export default {
   name: 'ProfileView',
 
@@ -23,7 +31,9 @@ export default {
   ],
 
   components:{
-    BaseLoading
+    BaseLoading,
+    //damos de alta el componente hijo
+    MainBlock,
   },
 
   data(){
