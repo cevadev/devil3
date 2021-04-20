@@ -4,6 +4,9 @@
       <!--<h1>Izquierda</h1>
           validamos si el array de horoes tiene heroes, si es asi nos quedamos con los tres primero heroes-->
       <top-heroes v-if="hasHeroes" :heroes="topHeroes" />
+      <!--validamos si el array de heroes posee mas de 3 heroes-->
+      <heroes-list v-if="hasHeroesList" :heroes="heroesList" />
+      
     </div>
     <div class="grid-item item-right">
       <h1>Derecha</h1>
@@ -16,6 +19,9 @@
 //importamos el componente hijo TopHeroes/Index.vue qe va a recibir el array de heroes
 import TopHeroes from './TopHeroes/Index.vue';
 
+//importamos el componente hijo HeroesList
+import HeroesList from './HeroesList/Index.vue';
+
 export default {
   name: 'MainBlock',
   //recibimos los datos profileData (objeto donde se guarda datos de la api) del componente padre Profile/Index.vue
@@ -27,6 +33,7 @@ export default {
   },
   components: {
       TopHeroes,
+      HeroesList,
   },
   computed: {
       //comprobamos que el array profileData contenga heroes
@@ -36,6 +43,14 @@ export default {
       //devolvemos los 3 primeros heroes
       topHeroes(){
           return this.profileData.heroes.slice(0,3);
+      },
+      //comprobamos que el array heroes contenga mas de 3 elementos
+      hasHeroesList(){
+        return this.profileData.heroes.length > 3;
+      },
+      //retornamos los heroes restantes sin incluir los 3 primeros
+      heroesList(){
+        return this.profileData.heroes.slice(3, this.profileData.heroes.length);
       }
   },
 }
