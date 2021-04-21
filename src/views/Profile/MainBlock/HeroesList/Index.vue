@@ -16,7 +16,7 @@
             </template>
             <!--en esta tercera columna no tenemos un componente sino que mostramos directamente el dato-->
             <template v-slot:cell(kills)="data">
-                <span>{{ data.item.kills.elites }}</span>
+                <span>{{ data.item.kills.elites | formatNumber}}</span>
             </template>
         </b-table>
   </div>
@@ -25,6 +25,9 @@
 <script>
 import HeroIco from './HeroIco'
 import HeroClassLevel from './HeroClassLevel'
+
+//importamos la funcion (filter) que dara formato a un numero
+import { formatNumber } from '../../../../filters/numeral.js';
 
 export default {
   name: 'HeroesList',
@@ -39,6 +42,10 @@ export default {
       required: true,
       type: Array
     }
+  },
+  //damos de alta los filters
+  filters: {
+      formatNumber
   },
   //no queremos mostrar todos los datos de array heroes, definimos que columnas vamos a mostrar, 
   //definimos la estructura en el objeto field

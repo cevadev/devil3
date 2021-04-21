@@ -6,10 +6,15 @@
       <top-heroes v-if="hasHeroes" :heroes="topHeroes" />
       <!--validamos si el array de heroes posee mas de 3 heroes-->
       <heroes-list v-if="hasHeroesList" :heroes="heroesList" />
+
+      <progress-list :acts="profileData.progression" />
       
     </div>
+    <!-- Right Bar-->
     <div class="grid-item item-right">
-      <h1>Derecha</h1>
+
+      <player-stats :stats="statsData"/>
+
     </div>
   </div>
 </template>
@@ -21,6 +26,10 @@ import TopHeroes from './TopHeroes/Index.vue';
 
 //importamos el componente hijo HeroesList
 import HeroesList from './HeroesList/Index.vue';
+
+import ProgressList from './ProgressList/Index.vue';
+
+import PlayerStats from './PlayerStats/Index.vue';
 
 export default {
   name: 'MainBlock',
@@ -34,6 +43,8 @@ export default {
   components: {
       TopHeroes,
       HeroesList,
+      ProgressList,
+      PlayerStats,
   },
   computed: {
       //comprobamos que el array profileData contenga heroes
@@ -51,6 +62,13 @@ export default {
       //retornamos los heroes restantes sin incluir los 3 primeros
       heroesList(){
         return this.profileData.heroes.slice(3, this.profileData.heroes.length);
+      },
+      statsData () {
+        //paragonLevel -> nivel de leyenda
+        //kills -> monstruos y élites
+        //Time played -> tiempo jugado por heroe en porcentaje
+        const { paragonLevel, kills, timePlayed } = this.profileData
+        return { paragonLevel, kills, timePlayed }
       }
   },
 }
