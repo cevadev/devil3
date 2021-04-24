@@ -3,7 +3,8 @@
 */
 <template>
   <!-- Contenedor principal -->
-  <div class="hero-portrait-wrapper mb-5 mb-sm-0">
+  <!--al hacer click en la figura nos lleva a la vista Hero-->
+  <div class="hero-portrait-wrapper mb-5 mb-sm-0 hover-cursor-pointer" v-on:click="goToHero(hero.id)">
     <!-- Avatar -->
     <div class="bg-secondary d-flex justify-content-center p-3 p-sm-0">
       <!-- Imagen de fondo, según la clase y el género -->
@@ -32,6 +33,10 @@
 
 <script>
 import { formatNumber } from '@/filters/numeral'
+
+//metodo mixin que nos permite ir a la vista Hero
+import gotToHero from '../../../../mixins/gotToHero.js';
+
 export default {
   name: 'TopHero',
   props: {
@@ -40,9 +45,12 @@ export default {
       required: true
     }
   },
-  filter: {
+  filters: {
     formatNumber
   },
+  mixins: [
+    gotToHero
+  ],
   computed: {
     //controlamos de forma dinamica la clase que corresponde segun el heroe que tengamos
     heroClass () {

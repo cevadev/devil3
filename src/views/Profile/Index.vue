@@ -6,6 +6,8 @@
     <template v-if="profileData !== null">
       <!--usamos el componente hijo y pasamos la data del api como props-->
       <main-block :profile-data="profileData" />
+      <!--usamos el componente ArtisansBlock que recibe como prop los datos de los artesanos-->
+      <artisans-block :artisans-data="artisansData"/>
     </template>
     
   </div>
@@ -22,6 +24,9 @@ import BaseLoading from '../../components/BaseLoading.vue';
 //importamos el componente hijo MainBlok/Index.vue
 import MainBlock from './MainBlock/Index.vue';
 
+//agregamos el nuevo componente Artisans
+import ArtisansBlock from './ArtisansBlock/Index.vue';
+
 export default {
   name: 'ProfileView',
 
@@ -32,6 +37,7 @@ export default {
 
   components:{
     BaseLoading,
+    ArtisansBlock,
     //damos de alta el componente hijo
     MainBlock,
   },
@@ -83,6 +89,18 @@ export default {
         .finally(() =>{
           this.isLoading = false;
         });
+    }
+  },
+  computed:{
+    artisansData(){
+      return {
+        blacksmith: this.profileData.blacksmith,
+        blacksmithHardcore: this.profileData.blacksmithHardcore,
+        jeweler: this.profileData.jeweler,
+        jewelerHardcore: this.profileData.jewelerHardcore,
+        mystic: this.profileData.mystic,
+        mysticHardcore: this.profileData.mysticHardcore
+      }
     }
   }
 }
