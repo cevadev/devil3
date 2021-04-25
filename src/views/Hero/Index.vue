@@ -1,6 +1,25 @@
 <template>
-  <div>
-    <h1>Hero View</h1>
+  <div class="hero-view">
+    <base-loading v-if="isLoadingHero"/>
+    <hero-detail-header v-if="hero" :detail="detailHeader"/>
+
+    <b-row>
+      <!-- 12 columnas de 'xs' -> 'md', 8 columnas desde 'lg' hacia arriba  -->
+      <!-- En 'lg' orden 2 -->
+      <b-col md="12" lg="8" order-lg="2">
+        <base-loading v-if="isLoadingItems"/>
+      </b-col>
+
+      <!-- 12 columnas de 'xs' -> 'md', 4 columnas desde 'lg' hacia arriba -->
+      <!-- En 'lg' orden 1 -->
+      <b-col md="12" lg="4" order-lg="1">
+        <template v-if="hero">
+          <hero-attributes :attributes="detailStats"/>
+          <hero-skills :skills="hero.skills"/>
+        </template>
+      </b-col>
+
+    </b-row>
   </div>
 </template>
 
@@ -12,11 +31,17 @@ import BaseLoading from '@/components/BaseLoading'
 //importamos las funciones que hacen las llamada a la api de Blizzard
 import { getApiHero, getApiDetailedHeroItems } from '@/api/search'
 
+import HeroDetailHeader from './HeroDetailHeader.vue';
+
+import HeroAttributes from './HeroAttributes/Index.vue';
+import HeroSkills from './HeroSkills/Index.vue'
+import HeroItems from './HeroItems/Index';
+
 export default {
   name: 'HeroView',
   //si ocurre un error, se invoca al mixin, si tood va bien se alguarda la info la variable hero e items de data()
   mixins: [setError],
-  components: { BaseLoading },
+  components: { BaseLoading, HeroDetailHeader, HeroAttributes, HeroSkills },
   data () {
     return {
       //variable de control, para saber si estan loading o no
@@ -28,7 +53,40 @@ export default {
       items: null
     }
   },
-  computed: {},
+  computed: {
+    detailStats () {
+      // Devuelve el contenido de stats y agrega classSlug
+      return { ...this.hero.stats, classSlug: this.hero.class }
+    },
+
+    detailHeader () {
+    // Asignamos valores a través de 
+      const {
+        name,
+        // valor: alias
+        class: classSlug,
+        gender,
+        level,
+        hardcore,
+        seasonal,
+        paragonLevel,
+        alive,
+        seasonCreated
+      } = this.hero
+
+      return {
+        name,
+        classSlug,
+        gender,
+        level,
+        hardcore,
+        seasonal,
+        paragonLevel,
+        alive,
+        seasonCreated
+      }
+    }
+  },
   created () {
     //cuando se crea el componente se realizan las llamadas a la api y true los componentes loading
     this.isLoadingHero = true
