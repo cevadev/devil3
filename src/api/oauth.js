@@ -7,12 +7,12 @@ import { post } from "axios";
 // 🔥 Recuerda que debes usar tus datos a la hora de hacer las llamadas a las APIs
 // 🔥 Como dice la documentación, tienes un máximo de llamadas por segundo y por hora a la API.
 // 🔥 Estos datos deberían ser privados
-const clientId = "d60f4ed446db4cad8baa96b315ee2fd5";
-const clientSecret = "oVHDD4Si5H7meHaVQYqagcAU4IafbJbx";
+//const clientId = "d60f4ed446db4cad8baa96b315ee2fd5";
+//const clientSecret = "oVHDD4Si5H7meHaVQYqagcAU4IafbJbx";
 
 //usado para variables de entorno
-//const clientId = process.env.VUE_APP_CLIENT_ID;
-//const clientSecret = process.env.VUE_APP_CLIENT_SECRET;
+const clientId = process.env.VUE_APP_CLIENT_ID;
+const clientSecret = process.env.VUE_APP_CLIENT_SECRET;
 //
 
 // API URL para hacer oauth
