@@ -4,8 +4,8 @@
       <b-navbar toggleable="lg" type="dark" variant="dark">
         <b-navbar-brand :to="{ name: 'Home' }">
           <img src="../../assets/img/diablo-iii.svg" alt="D3" width="30">
-          <!--hacemos uso de la variable de entorno-->
-          <span class="font-diablo ml-2">{{ title }}</span>
+          <!--hacemos uso de la variable de entorno {{ title }}-->
+          <span class="font-diablo ml-2">D3PF</span>
         </b-navbar-brand>
       </b-navbar>
     </div>
@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
 export default {
     name: 'HeaderBar',
     data () {

@@ -10,6 +10,11 @@ import { post } from "axios";
 const clientId = "d60f4ed446db4cad8baa96b315ee2fd5";
 const clientSecret = "oVHDD4Si5H7meHaVQYqagcAU4IafbJbx";
 
+//usado para variables de entorno
+//const clientId = process.env.VUE_APP_CLIENT_ID;
+//const clientSecret = process.env.VUE_APP_CLIENT_SECRET;
+//
+
 // API URL para hacer oauth
 const region = "eu";
 const API_URL = `https://${region}.battle.net/oauth/token`;
