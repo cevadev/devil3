@@ -8,6 +8,8 @@
       <!-- En 'lg' orden 2 -->
       <b-col md="12" lg="8" order-lg="2">
         <base-loading v-if="isLoadingItems"/>
+        <!-- Componente de Items del personaje -->
+        <hero-items v-if="items" :items="items"/>
       </b-col>
 
       <!-- 12 columnas de 'xs' -> 'md', 4 columnas desde 'lg' hacia arriba -->
@@ -33,15 +35,18 @@ import { getApiHero, getApiDetailedHeroItems } from '@/api/search'
 
 import HeroDetailHeader from './HeroDetailHeader.vue';
 
+//Atributos del hero
 import HeroAttributes from './HeroAttributes/Index.vue';
+//avilidades del hero
 import HeroSkills from './HeroSkills/Index.vue'
+//items del hero
 import HeroItems from './HeroItems/Index';
 
 export default {
   name: 'HeroView',
   //si ocurre un error, se invoca al mixin, si tood va bien se alguarda la info la variable hero e items de data()
   mixins: [setError],
-  components: { BaseLoading, HeroDetailHeader, HeroAttributes, HeroSkills },
+  components: { BaseLoading, HeroDetailHeader, HeroAttributes, HeroSkills, HeroItems },
   data () {
     return {
       //variable de control, para saber si estan loading o no
