@@ -15,6 +15,9 @@ import "./plugins/fontAwesome.js";
 //registramos nuestro archivo de css de forma global
 import "./assets/css/main.styl";
 
+//informamos a Vue del uso de Directivas personalizadas
+import "./directives";
+
 //configuracion extra
 Vue.config.productionTip = false;
 

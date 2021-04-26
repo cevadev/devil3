@@ -1,3 +1,4 @@
+/**Formulario de busqueda de personajes */
 <template>
   <div class="search-form my-5">
 
@@ -13,7 +14,9 @@
             label-for="input-text"
             description="Format: YourProfile#1234"
           >
+            <!--v-focus es una directiva personalizada-->
             <b-form-input
+              v-focus
               id="input-text"
               v-model="form.battleTag"
               type="text"

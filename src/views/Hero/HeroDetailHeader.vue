@@ -10,7 +10,8 @@
       <div class="text-center">
 
         <!-- Nombre -->
-        <h1 class="font-diablo text-truncate text-bone">{{ detail.name }}</h1>
+        <!--v-diablo:bone es una directiva personalizada-->
+        <h1  v-diablo:bone class="text-bone">{{ detail.name }}</h1>
 
         <div class="text-monospace">
           <small>
